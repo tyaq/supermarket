@@ -17,10 +17,13 @@ public class SuperMarket {
 		q.join(e);
 		q.join(y);
 		q.join(t);
-		System.out.println(q.getCurrent());
+		System.out.println("Current: "+q.getCurrent());
+		System.out.println("Header: "+q.getHeader());
 		System.out.println("after six people: "+q);
 		q.leave();
 		System.out.println(q.getCurrent());
+		System.out.println("Current: "+q.getCurrent());
+		System.out.println("Header: "+q.getHeader());
 		System.out.println("after leave: "+q);
 		
 	}//Close main method

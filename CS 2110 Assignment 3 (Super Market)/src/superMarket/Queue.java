@@ -33,6 +33,10 @@ public void setCurrent ( Person p ) { // sets ‘current’ to point to where p 
 
 public Node getCurrent() {
 	return current;
+}//accessory method
+
+public Node getHeader() {
+	return header;
 }
 
 public boolean inList ( ) {
@@ -61,7 +65,12 @@ public Queue () {
 }//Null Constructor
 
 public String toString() {
-	return getLength()+"";
+	String save = "[";
+	for (Node n=header;n!=null && n.getNext() != null; n=n.getNext()){
+		save += n + " , ";
+	}//end for loop
+	save += "]";
+	return "Queue List:\n"+save+"\n"+"Length is: "+getLength()+"\n";
 }
 
 }//end class Queue
