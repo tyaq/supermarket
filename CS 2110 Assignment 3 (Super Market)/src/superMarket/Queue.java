@@ -1,13 +1,12 @@
 package superMarket;
 
 public class Queue {
-	String h="hello";
 private Node header,current;
 private int length;
 
 public void join (Person p) throws BadInsertionPoint {
-	if (curretn == null) throw new BadInsertionPoint();
-	Node temp == new Node (p,current.getNext());
+	if (current == null) throw new BadInsertionPoint();
+	Node temp = new Node (p,current.getNext());
 	current.setNext(temp);
 	length++;
 }//end join method
