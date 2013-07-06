@@ -1,37 +1,30 @@
 package superMarket;
 
 public class Node {
-	private Person data;
-	private Node next;
+	String data;//just get a persons name
+	Node next;
+	Node previous;
 	
-//Accessory & Mutator Methods	
+	public Node(Person p){
+		data=p.getName();
+	}
 	
-	public Person getData(){
-		return data;
-		}
+	//Mutator Methods
 	
-	public void setData(Person p){
-		data=p;	
-		}
+	
+
+	//Accessory Methods
 	
 	public Node getNext(){
 		return next;
-		}
-	
-	public void setNext(Node n){
-		next=n;
-		}
-	
-	public Node(Person p, Node n){
-		data=p;
-		next=n;		
 	}
 	
-	public Node(Person p){
-		this(p,null);
+	public Node getPrev(){
+		return previous;
 	}
-	public Node(){
-		this(null);
-	}
-
-}
+	
+	public String getPerson(){
+		return data;
+	}	
+	
+}//Close node class

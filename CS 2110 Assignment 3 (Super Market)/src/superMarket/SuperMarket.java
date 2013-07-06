@@ -17,6 +17,7 @@ public class SuperMarket {
 		q.join(e);
 		q.join(y);
 		q.join(t);
+		q.setCurrent(p);
 		System.out.println("Current: "+q.getCurrent());
 		System.out.println("Header: "+q.getHeader());
 		System.out.println("after six people: "+q);
