@@ -13,13 +13,13 @@ public void join (Person p) throws Exception {
 
 public void leave() {
 	if (!isEmpty() && inList()){
-		getPrevious ().setNext (current.getNext());
+		getPrevious().setNext (current.getNext());
 		length--;
 	}//end if
 	else System.out.println("Sorry, list is empty.");
 }// end leave method
 
-private Node getPrevious () {
+private Node getPrevious() {
 	for (Node n=header;n!=null && n.getNext() != null; n=n.getNext()){
 		if(n.getNext() == current) {return n;}//close if loop
 	}//end for loop
@@ -30,6 +30,10 @@ public void setCurrent ( Person p ) { // sets ‘current’ to point to where p 
 	for ( current = header ; current != null ; current = current . getNext( ) )
 		if ( current.getData ( ).equals ( p ) ) return ; 
 }//close setCurrent mutator method
+
+public Node getCurrent() {
+	return current;
+}
 
 public boolean inList ( ) {
 	return ( current != null && current != header ) ; 
@@ -55,5 +59,9 @@ public Queue ( int n ) {
 public Queue () {
 	this (0);
 }//Null Constructor
+
+public String toString() {
+	return getLength()+"";
+}
 
 }//end class Queue
