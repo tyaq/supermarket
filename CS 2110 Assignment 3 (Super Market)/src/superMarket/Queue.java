@@ -12,11 +12,13 @@ public void join (Person p) throws Exception {
 }//end join method
 
 public void leave() {
+	System.out.println(!isEmpty());
+	System.out.println(inList());
 	if (!isEmpty() && inList()){
 		getPrevious().setNext (current.getNext());
 		length--;
 	}//end if
-	else System.out.println("Sorry, list is empty.");
+	else {System.out.println("Sorry, list is empty.");}
 }// end leave method
 
 private Node getPrevious() {
@@ -40,6 +42,8 @@ public Node getHeader() {
 }
 
 public boolean inList ( ) {
+	System.out.println("inList for null: "+(current != null));
+	System.out.println("inList for header: " + (current != header));
 	return ( current != null && current != header ) ; 
 }
 
