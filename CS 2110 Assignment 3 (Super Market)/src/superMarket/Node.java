@@ -4,6 +4,8 @@ public class Node {
 	private Person data;
 	private Node next;
 	
+//Accessory & Mutator Methods	
+	
 	public Person getData(){
 		return data;
 		}

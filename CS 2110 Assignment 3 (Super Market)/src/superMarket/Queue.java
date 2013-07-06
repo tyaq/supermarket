@@ -4,8 +4,8 @@ public class Queue {
 private Node header,current;
 private int length;
 
-public void join (Person p) throws BadInsertionPoint {
-	if (current == null) throw new BadInsertionPoint();
+public void join (Person p) throws Exception {
+	if (current == null) throw new Exception("BadInsertionPoint");
 	Node temp = new Node (p,current.getNext());
 	current.setNext(temp);
 	length++;
@@ -22,9 +22,8 @@ public void leave() {
 private Node getPrevious () {
 	for (Node n=header;n!=null && n.getNext() != null; n=n.getNext()){
 		if(n.getNext() == current) {return n;}//close if loop
-		return null;
 	}//end for loop
-		
+	return null;
 }// this return is only reached if no 'previous' was found
 
 public void setCurrent ( Person p ) { // sets ‘current’ to point to where p is
@@ -50,7 +49,8 @@ public boolean isEmpty ( ) {
 
 public Queue ( int n ) {
 	header = new Node ( ) ;
-	current = header; length = 0 ; 
+	current = header;
+	length = 0 ; 
 }
 public Queue () {
 	this (0);
