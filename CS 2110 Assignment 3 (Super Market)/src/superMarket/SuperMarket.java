@@ -15,6 +15,8 @@ public class SuperMarket {
 		System.out.println(bob);
 		bob.enterLine(w);
 		bob.enterLine(e);
+		bob.serve();
+		System.out.println("after serveing: "+bob);
 		bob.enterLine(y);
 		bob.enterLine(t);
 		System.out.println("after six people: "+bob);
