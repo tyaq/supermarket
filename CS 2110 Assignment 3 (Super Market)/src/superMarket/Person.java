@@ -4,8 +4,8 @@ public class Person {
 	private String name;
 	private Node spotInLine;
 	public Person(){
-		double temp=Math.random()*10;
-		name = temp +"";
+		Double temp=(Math.random()*10);
+		name = String.format("%.2f", temp);
 	}
 	
 	public String getName(){
@@ -16,5 +16,8 @@ public class Person {
 	}
 	public Node getSpotInLine(){
 		return spotInLine;
+	}
+	public String toString(){
+		return name;
 	}
 }
