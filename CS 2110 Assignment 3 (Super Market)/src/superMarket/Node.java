@@ -2,15 +2,20 @@ package superMarket;
 
 public class Node {
 	String data;//just get a persons name
-	Node next;
-	Node previous;
+	private Node next;
+	private Node previous;
 	
 	public Node(Person p){
 		data=p.getName();
 	}
 	
 	//Mutator Methods
-	
+	public void setNext(Node fronter){
+		next= fronter;
+	}
+	public void setPrevious(Node backer){
+		previous=backer;
+	}
 	
 
 	//Accessory Methods
