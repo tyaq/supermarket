@@ -13,7 +13,7 @@ public class Node {
 	public void setNext(Node fronter){
 		next= fronter;
 	}
-	public void setPrevious(Node backer){
+	public void setPrev(Node backer){
 		previous=backer;
 	}
 	
