@@ -18,6 +18,12 @@ public class Person {
         public int getSpotInLine(){
                 return spotInLine;
         }
+        
+        public void leave(){
+        	if(spotInLine>Register.getShortestLine().getLength()){
+        		Register.leave(this);
+        	}
+        }
         public String toString(){
                 return name;
         }
