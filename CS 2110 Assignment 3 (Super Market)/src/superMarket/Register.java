@@ -9,11 +9,17 @@ public class Register extends Thread {
 	private static int fastestSpeed=500;
 	private int length=0;
 	private static Register shortestLine=null;
+	private static ArrayList<Register> r;
+	
+	static{
+		r=new ArrayList<Register>();
+	}
 	
 	public Register() {
 		q = new ArrayList<Object>();
 		serveSpeed=(long) (slowestSpeed*Math.random()+fastestSpeed);
 		shortestLine=this;
+		r.add(this);
 		new Thread().start();
 	}//Constructor
 	
@@ -58,8 +64,13 @@ public class Register extends Thread {
 		return q.size();
 	}
 	
-	public void setShortestLine(){//sets shortest line
-		if (q.size()<shortestLine.getLength()) shortestLine=this;
+	public static void setShortestLine(){//sets shortest line
+		//if (q.size()<shortestLine.getLength()) {shortestLine=this;};
+		for (int i=0;i<r.size();i++){
+			if(r.get(i).getLength()<shortestLine.getLength()){
+				shortestLine=r.get(i);
+			}
+		}
 	}
 	
 	public String toString(){
