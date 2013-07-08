@@ -16,7 +16,7 @@ public class SuperMarket {
 		System.out.println("Register bob: "+bob);
 		System.out.println("Register dave: "+dave);
 		System.out.println("Register tim: "+tim);
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		System.exit(0);
 		
 	}//Close main method

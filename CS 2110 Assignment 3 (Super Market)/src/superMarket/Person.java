@@ -12,6 +12,12 @@ public class Person implements Runnable {
         }
         
         public void run(){
+        	try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	while(spotInLine != 1) {
         		leave();
         	}
@@ -33,7 +39,7 @@ public class Person implements Runnable {
         
         
         public void leave(){
-        	if(spotInLine==0 & spotInLine!=1 & spotInLine>Register.getShortestLine().getLength()){
+        	if(spotInLine!=0 & spotInLine!=1 & spotInLine>Register.getShortestLine().getLength()){
         		register.leave(this);
         		
         	}

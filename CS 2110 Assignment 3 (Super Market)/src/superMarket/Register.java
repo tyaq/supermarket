@@ -35,7 +35,7 @@ public class Register implements Runnable {
 	//Put into Queue Class
 	public void enQ(Person p){//someone enters the line
 		q.add(p);
-		p.setSpotInLine(length);
+		p.setSpotInLine(length+1);
 		p.setRegister(this);
 		length++;
 		setShortestLine();
@@ -47,14 +47,18 @@ public class Register implements Runnable {
 				Thread.sleep(serveSpeed);
 				System.out.print(q.get(0)+ " Served in: ");
 				System.out.println(String.format("%.2f", ((double) serveSpeed/1000)) +"s");
-	        	System.out.println("\t"+q.get(q.size()-1)+" spot is: " +q.get(q.size()-1).getSpotInLine());
-	        	System.out.println("\tThe shortest line is: "+ Register.getShortestLine().getLength());
+
 			} catch (InterruptedException e) {
 				// TODO Tell me it went wrong
 				e.printStackTrace();
 			};
-			q.get(0).setSpotInLine(0);
 			q.remove(0);
+			for(int i=0;i<q.size();i++){
+				q.get(i).setSpotInLine(q.get(i).getSpotInLine()-1);
+			}//end for
+			if(!(q.size()==0 | q.size()==1)){
+			System.out.println("\t"+q.get(q.size()-1)+" spot is: " +q.get(q.size()-1).getSpotInLine());
+        	System.out.println("\tThe shortest line is: "+ Register.getShortestLine().getLength());}
 			
 			length--;
 			setShortestLine();
@@ -68,7 +72,7 @@ public class Register implements Runnable {
 	}
 	
 	public int getLength() {//Accessory Method
-		return length;
+		return q.size();
 	}
 	
 	public static void setShortestLine(){//sets shortest line
