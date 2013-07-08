@@ -3,7 +3,7 @@ package superMarket;
 public class SuperMarket {
 	public static void main(String args[]) throws Exception {
 		//Open four registers
-		Feeder people = new Feeder(4);
+		Feeder people = new Feeder(2);
 		System.out.println(people);
 		Register bob = new Register();
 		people.enQ();
