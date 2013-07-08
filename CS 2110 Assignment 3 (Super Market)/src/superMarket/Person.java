@@ -1,23 +1,24 @@
 package superMarket;
 
 public class Person {
-	private String name;
-	private Node spotInLine;
-	public Person(){
-		Double temp=(Math.random()*10);
-		name = String.format("%.2f", temp);
-	}
-	
-	public String getName(){
-		return name;
-	}
-	public void setSpotInLine(Node n){
-		spotInLine = n;
-	}
-	public Node getSpotInLine(){
-		return spotInLine;
-	}
-	public String toString(){
-		return name;
-	}
+        private String name;
+        private int spotInLine;
+        private static int personNumber=1;
+        public Person(){
+                name = "customer "+personNumber;
+                personNumber++;
+        }
+        
+        public String getName(){
+                return name;
+        }
+        public void setSpotInLine(int n){
+                spotInLine = n;
+        }
+        public int getSpotInLine(){
+                return spotInLine;
+        }
+        public String toString(){
+                return name;
+        }
 }

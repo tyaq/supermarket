@@ -28,6 +28,7 @@ public class Register extends Thread {
 	//Put into Queue Class
 	public void enQ(Person p){//someone enters the line
 		q.add(p);
+		p.setSpotInLine(length);
 		length++;
 		setShortestLine();
 	}
@@ -54,11 +55,11 @@ public class Register extends Thread {
 	}
 	
 	public int getLength() {//Accessory Method
-		return length;
+		return q.size();
 	}
 	
 	public void setShortestLine(){//sets shortest line
-		if (length<shortestLine.getLength()) shortestLine=this;
+		if (q.size()<shortestLine.getLength()) shortestLine=this;
 	}
 	
 	public String toString(){
