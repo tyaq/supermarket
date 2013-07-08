@@ -33,8 +33,9 @@ public class Person implements Runnable {
         
         
         public void leave(){
-        	if(spotInLine==0 & spotInLine>Register.getShortestLine().getLength()){
+        	if(spotInLine==0 & spotInLine!=1 & spotInLine>Register.getShortestLine().getLength()){
         		register.leave(this);
+        		
         	}
         }
         public String toString(){

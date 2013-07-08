@@ -3,7 +3,7 @@ package superMarket;
 import java.util.ArrayList;
 
 public class Register implements Runnable {
-	private ArrayList<Object> q;
+	private ArrayList<Person> q;
 	private long serveSpeed;
 	private static int slowestSpeed=2000;
 	private static int fastestSpeed=500;
@@ -16,7 +16,7 @@ public class Register implements Runnable {
 	}
 	
 	public Register() {
-		q = new ArrayList<Object>();
+		q = new ArrayList<Person>();
 		serveSpeed=(long) (slowestSpeed*Math.random()+fastestSpeed);
 		shortestLine=this;
 		r.add(this);
@@ -47,11 +47,15 @@ public class Register implements Runnable {
 				Thread.sleep(serveSpeed);
 				System.out.print(q.get(0)+ " Served in: ");
 				System.out.println(String.format("%.2f", ((double) serveSpeed/1000)) +"s");
+	        	System.out.println("\t"+q.get(q.size()-1)+" spot is: " +q.get(q.size()-1).getSpotInLine());
+	        	System.out.println("\tThe shortest line is: "+ Register.getShortestLine().getLength());
 			} catch (InterruptedException e) {
 				// TODO Tell me it went wrong
 				e.printStackTrace();
 			};
+			q.get(0).setSpotInLine(0);
 			q.remove(0);
+			
 			length--;
 			setShortestLine();
 		}
@@ -64,7 +68,7 @@ public class Register implements Runnable {
 	}
 	
 	public int getLength() {//Accessory Method
-		return q.size();
+		return length;
 	}
 	
 	public static void setShortestLine(){//sets shortest line
