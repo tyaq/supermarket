@@ -1,12 +1,20 @@
 package superMarket;
 
-public class Person {
+public class Person implements Runnable {
         private String name;
         private int spotInLine;
+        private Register register;
         private static int personNumber=1;
         public Person(){
                 name = "customer "+personNumber;
                 personNumber++;
+                new Thread(this).start();;
+        }
+        
+        public void run(){
+        	while(spotInLine != 1) {
+        		leave();
+        	}
         }
         
         public String getName(){
@@ -19,9 +27,14 @@ public class Person {
                 return spotInLine;
         }
         
+        public void setRegister(Register r){
+        	register=r;
+        }
+        
+        
         public void leave(){
-        	if(spotInLine>Register.getShortestLine().getLength()){
-        		Register.leave(this);
+        	if(spotInLine==0 & spotInLine>Register.getShortestLine().getLength()){
+        		register.leave(this);
         	}
         }
         public String toString(){

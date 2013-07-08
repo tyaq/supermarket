@@ -2,7 +2,7 @@ package superMarket;
 
 import java.util.ArrayList;
 
-public class Feeder {
+public class Feeder implements Runnable {
 	private ArrayList<Person> shoppers;
 	Person p;
 	boolean inital=true;
@@ -18,6 +18,11 @@ public class Feeder {
 		}//end for
 	}//end constructor
 	
+	public void run(){
+		while(!shoppers.isEmpty()){
+			enQ();
+		}
+	}
 	
 	public void enQ(){//put people in line if this is first time make lines even
 		//put people in line based on how short it is
