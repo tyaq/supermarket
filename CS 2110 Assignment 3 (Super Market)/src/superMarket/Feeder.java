@@ -20,15 +20,12 @@ public class Feeder {
 	
 	
 	public void enQ(){//put people in line if this is first time make lines even
-		ArrayList<Register> r=Register.getRegisterList();
+		
 		//put people in line based on how short it is
 			while(!shoppers.isEmpty()){
-			if(shoppers.get(0).getSpotInLine()>Register.getShortestLine().getLength()){
+			
 				Register.getShortestLine().enQ(shoppers.get(0));
-				shoppers.remove(0);}//end if
-			else if (shoppers.get(0).getSpotInLine()==0){
-				Register.getShortestLine();
-			}
+				shoppers.remove(0);
 			}//end while
 	}
 	
