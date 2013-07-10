@@ -75,7 +75,7 @@ public class Register implements Runnable {
 		return q.size();
 	}
 	
-	public static void setShortestLine(){//sets shortest line
+	public synchronized static void setShortestLine(){//sets shortest line
 		//if (q.size()<shortestLine.getLength()) {shortestLine=this;};
 		for (int i=0;i<r.size();i++){
 			if(r.get(i).getLength()<shortestLine.getLength()){

@@ -8,10 +8,8 @@ public class Feeder implements Runnable {
 	boolean inital=true;
 	public Feeder(int numberOfShoppers){
 		shoppers = new ArrayList<Person>(numberOfShoppers);
-		//n is a variable for the number of Player class objects that I want to create
+		//creates the number of People class objects that user wants to create
 		for(int i = 0; i < numberOfShoppers; i++) {
-
-		    //this is what I can come up with but I am missing something 
 
 		     p = new Person();
 		     shoppers.add(p);
@@ -23,6 +21,7 @@ public class Feeder implements Runnable {
 			enQ();
 		}
 	}
+	
 	
 	public void enQ(){//put people in line if this is first time make lines even
 		//put people in line based on how short it is

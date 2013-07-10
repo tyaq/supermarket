@@ -17,6 +17,7 @@ public class Person implements Runnable {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				
 			}
         	while(spotInLine != 1) {
         		leave();
