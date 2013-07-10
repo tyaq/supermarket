@@ -14,7 +14,7 @@ public class SuperMarket {
 		System.out.println("Register bob: "+bob);
 		System.out.println("Register dave: "+dave);
 		System.out.println("Register tim: "+tim);
-		Thread.sleep(6000);
+		Thread.sleep(10000);//Make this dynamic
 		System.out.println("Register bob: "+bob);
 		System.out.println("Register dave: "+dave);
 		System.out.println("Register tim: "+tim);
