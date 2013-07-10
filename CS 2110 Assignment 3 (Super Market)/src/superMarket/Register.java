@@ -10,6 +10,8 @@ public class Register implements Runnable {
 	private int length=0;
 	private static Register shortestLine=null;
 	private static ArrayList<Register> r;
+	private String name;
+	private static int personNumber=1;
 	
 	static{
 		r=new ArrayList<Register>();
@@ -20,11 +22,18 @@ public class Register implements Runnable {
 		serveSpeed=(long) (slowestSpeed*Math.random()+fastestSpeed);
 		shortestLine=this;
 		r.add(this);
+		name = "register "+personNumber;
+        personNumber++;
+        Thread t = new Thread(this);
+        t.setName(name);
+        t.start();
 	}//Constructor
 	
 	public void run(){
-		while(!q.isEmpty()){
-			deQ();
+		while (true){	
+			while(!q.isEmpty()){
+				deQ();
+			}
 		}
 	}
 	
@@ -70,6 +79,8 @@ public class Register implements Runnable {
 		q.remove(q.indexOf(p));
 		length--;
 		Feeder.getTheFeeder().getShoppers().add(p);
+		System.out.println(p+" actully left the Q");
+		System.out.println(Feeder.getTheFeeder().getShoppers());
 		setShortestLine();
 	}
 	

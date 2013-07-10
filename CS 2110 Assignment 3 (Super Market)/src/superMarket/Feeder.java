@@ -22,20 +22,17 @@ public class Feeder implements Runnable {
 	public void run(){
 		System.out.println("Feeder Thread Started");
 		while(true){
-			//System.out.println((shoppers.isEmpty()));
-			if (!shoppers.isEmpty()){
-				System.out.println("we have shoppers");
-				while(!shoppers.isEmpty()){
-					enQ();
-				}
-			}
+			//System.out.println((!(Feeder.getTheFeeder().getShoppers().isEmpty())));
+			//if (!(theFeeder.getShoppers().isEmpty())){
+				enQ();
+			//}
 		}
 	}
 	
 	
 	public void enQ(){//put people in line if this is first time make lines even
 		//put people in line based on how short it is
-			while(!shoppers.isEmpty()){
+			while(!(shoppers.isEmpty())){
 				Register.setShortestLine();
 				Register.getShortestLine().enQ(shoppers.get(0));
 				shoppers.remove(0);

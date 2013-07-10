@@ -44,7 +44,7 @@ public class Person implements Runnable {
         
         
         public void leave(){
-        	if(spotInLine!=0 & spotInLine!=1 & spotInLine>Register.getShortestLine().getLength()){
+        	if(spotInLine!=0 & spotInLine!=1 & spotInLine>Register.getShortestLine().getLength()+1){
         		System.out.println(this+" left the Q");
         		register.leave(this);
         	}
