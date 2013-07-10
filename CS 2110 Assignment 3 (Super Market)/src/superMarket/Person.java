@@ -8,7 +8,11 @@ public class Person implements Runnable {
         public Person(){
                 name = "customer "+personNumber;
                 personNumber++;
-                new Thread(this).start();;
+                Thread t = new Thread(this);
+                t.setName(name);
+                t.start();
+                
+                
         }
         
         public void run(){
@@ -41,8 +45,8 @@ public class Person implements Runnable {
         
         public void leave(){
         	if(spotInLine!=0 & spotInLine!=1 & spotInLine>Register.getShortestLine().getLength()){
+        		System.out.println(this+" left the Q");
         		register.leave(this);
-        		
         	}
         }
         public String toString(){

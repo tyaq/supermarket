@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public class Feeder implements Runnable {
 	private ArrayList<Person> shoppers;
-	Person p;
-	boolean inital=true;
+	private Person p;
+	private boolean inital=true;
+	private static Feeder theFeeder;
+	
 	public Feeder(int numberOfShoppers){
 		shoppers = new ArrayList<Person>(numberOfShoppers);
 		//creates the number of People class objects that user wants to create
@@ -13,12 +15,20 @@ public class Feeder implements Runnable {
 
 		     p = new Person();
 		     shoppers.add(p);
+		     theFeeder=this;
 		}//end for
 	}//end constructor
 	
 	public void run(){
-		while(!shoppers.isEmpty()){
-			enQ();
+		System.out.println("Feeder Thread Started");
+		while(true){
+			//System.out.println((shoppers.isEmpty()));
+			if (!shoppers.isEmpty()){
+				System.out.println("we have shoppers");
+				while(!shoppers.isEmpty()){
+					enQ();
+				}
+			}
 		}
 	}
 	
@@ -32,6 +42,13 @@ public class Feeder implements Runnable {
 			}//end while
 	}
 	
+	public static Feeder getTheFeeder(){
+		return theFeeder;
+	}
+	
+	public ArrayList<Person> getShoppers(){
+		return shoppers;
+	}
 	
 	public String toString() {
 		return shoppers.toString();

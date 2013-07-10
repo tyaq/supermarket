@@ -66,8 +66,10 @@ public class Register implements Runnable {
 	}
 	
 	public void leave(Person p) {//Person leaves line
+		p.setSpotInLine(0);
 		q.remove(q.indexOf(p));
 		length--;
+		Feeder.getTheFeeder().getShoppers().add(p);
 		setShortestLine();
 	}
 	
