@@ -16,15 +16,17 @@ public class Person implements Runnable {
         }
         
         public void run(){
-        	try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+        	while(SuperMarket.getRunning()){
+        		try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				
-			}
-        	while(spotInLine != 1) {
-        		leave();
+				}
+        		while(spotInLine != 1) {
+        			leave();
+        		}
         	}
         }
         

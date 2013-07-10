@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Register implements Runnable {
 	private ArrayList<Person> q;
 	private long serveSpeed;
-	private static int slowestSpeed=2000;
+	private static int slowestSpeed=600;
 	private static int fastestSpeed=500;
 	private int length=0;
 	private static Register shortestLine=null;
@@ -30,7 +30,7 @@ public class Register implements Runnable {
 	}//Constructor
 	
 	public void run(){
-		while (true){	
+		while (SuperMarket.getRunning()){	
 			while(!q.isEmpty()){
 				deQ();
 			}
@@ -65,6 +65,8 @@ public class Register implements Runnable {
 			for(int i=0;i<q.size();i++){
 				q.get(i).setSpotInLine(q.get(i).getSpotInLine()-1);
 			}//end for
+			SuperMarket.served();
+			System.out.println(SuperMarket.getPeopleServed());
 			if(!(q.size()==0 | q.size()==1)){
 			System.out.println("\t"+q.get(q.size()-1)+" spot is: " +q.get(q.size()-1).getSpotInLine());
         	System.out.println("\tThe shortest line is: "+ Register.getShortestLine().getLength());}
@@ -80,7 +82,6 @@ public class Register implements Runnable {
 		length--;
 		Feeder.getTheFeeder().getShoppers().add(p);
 		System.out.println(p+" actully left the Q");
-		System.out.println(Feeder.getTheFeeder().getShoppers());
 		setShortestLine();
 	}
 	

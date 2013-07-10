@@ -21,7 +21,7 @@ public class Feeder implements Runnable {
 	
 	public void run(){
 		System.out.println("Feeder Thread Started");
-		while(true){
+		while(SuperMarket.getRunning()){
 			//System.out.println((!(Feeder.getTheFeeder().getShoppers().isEmpty())));
 			//if (!(theFeeder.getShoppers().isEmpty())){
 				enQ();

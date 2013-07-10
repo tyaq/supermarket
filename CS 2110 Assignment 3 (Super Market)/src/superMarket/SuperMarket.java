@@ -1,7 +1,10 @@
 package superMarket;
 
 public class SuperMarket {
+	static boolean running =true;
+	static int peopleServed = 0;
 	public static void main(String args[]) throws Exception {
+		long start=System.nanoTime();
 		//Open four registers
 		Register bob = new Register();
 		Register dave = new Register();
@@ -14,7 +17,11 @@ public class SuperMarket {
 		System.out.println("Register bob: "+bob);
 		System.out.println("Register dave: "+dave);
 		System.out.println("Register tim: "+tim);
-		Thread.sleep(10000);//Make this dynamic
+		while (running){
+			if(peopleServed>=10) setRunning(false);
+		}
+		long end = System.nanoTime();
+		System.out.println("It took "+ ((end-start)/1000000000)+" Seconds");
 		System.out.println("Register bob: "+bob);
 		System.out.println("Register dave: "+dave);
 		System.out.println("Register tim: "+tim);
@@ -23,4 +30,19 @@ public class SuperMarket {
 		
 	}//Close main method
 	
+	public static int getPeopleServed(){
+		return peopleServed;
+	}
+	
+	public static void served(){
+		peopleServed++;
+	}
+	
+	public static boolean getRunning(){
+		return running;
+	}
+	
+	public static void setRunning(Boolean run){
+		running=run;
+	}
 }//Close super market class
