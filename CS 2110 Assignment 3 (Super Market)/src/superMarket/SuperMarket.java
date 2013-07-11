@@ -9,7 +9,7 @@ public class SuperMarket {
 		Register bob = new Register();
 		Register dave = new Register();
 		Register tim = new Register();
-		Feeder people = new Feeder(50);
+		Feeder people = new Feeder(100);
 		System.out.println(people);
 		people.enQ();
 		new Thread(people).start();
@@ -18,7 +18,7 @@ public class SuperMarket {
 		System.out.println("Register dave: "+dave);
 		System.out.println("Register tim: "+tim);
 		while (running){
-			if(peopleServed>=50) setRunning(false);
+			if(peopleServed>=100) setRunning(false);
 		}
 		long end = System.nanoTime();
 		System.out.println("It took "+ ((end-start)/1000000000)+" Seconds");

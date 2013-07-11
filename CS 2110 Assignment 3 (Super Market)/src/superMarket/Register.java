@@ -47,7 +47,7 @@ public class Register implements Runnable {
 		p.setSpotInLine(length+1);
 		p.setRegister(this);
 		length++;
-		setShortestLine();
+		if(q.size()<shortestLine.getLength()) setShortestLine(this);
 	}
 	
 	public void deQ() {//Cashier serves first person
@@ -72,7 +72,7 @@ public class Register implements Runnable {
         	System.out.println("\tThe shortest line is: "+ Register.getShortestLine().getLength());}
 			
 			length--;
-			setShortestLine();
+			if(q.size()<shortestLine.getLength()) setShortestLine(this);
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class Register implements Runnable {
 		length--;
 		Feeder.getTheFeeder().getShoppers().add(p);
 		System.out.println(p+" actully left the Q");
-		setShortestLine();
+		if(q.size()<shortestLine.getLength()) {setShortestLine(this);}
 	}
 	
 	public int getLength() {//Accessory Method
@@ -97,6 +97,10 @@ public class Register implements Runnable {
 			}
 		}
 	}
+	
+	public synchronized static void setShortestLine(Register reg){
+		shortestLine=reg;
+	};
 	
 	public String toString(){
 		return q.toString();
