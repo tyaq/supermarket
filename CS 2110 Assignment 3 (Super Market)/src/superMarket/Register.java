@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Register implements Runnable {
 	private ArrayList<Person> q;
 	private long serveSpeed;
-	private static int slowestSpeed=600;
+	private static int slowestSpeed=2000;
 	private static int fastestSpeed=500;
 	private int length=0;
 	private static Register shortestLine=null;
