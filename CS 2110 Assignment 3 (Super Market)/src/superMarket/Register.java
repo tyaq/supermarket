@@ -29,6 +29,7 @@ public class Register implements Runnable {
         t.start();
 	}//Constructor
 	
+	//run method for thread. Basically always be serving.
 	public void run(){
 		while (SuperMarket.getRunning()){	
 			while(!q.isEmpty()){
@@ -36,11 +37,19 @@ public class Register implements Runnable {
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @return shortestLine
+	 */
+	//Mutator method
 	public static Register getShortestLine(){//allows for getting of shortest line
 		return shortestLine;
 	}
 	
+	/**
+	 * 
+	 * @param p
+	 */
 	//Put into Queue Class
 	public void enQ(Person p){//someone enters the line
 		q.add(p);
@@ -48,8 +57,11 @@ public class Register implements Runnable {
 		p.setRegister(this);
 		length++;
 		if(q.size()<shortestLine.getLength()) setShortestLine(this);
-	}
+	}//Close enQ
 	
+	/**
+	 * 
+	 */
 	public void deQ() {//Cashier serves first person
 		if(!q.isEmpty()) {
 			try {
@@ -66,29 +78,52 @@ public class Register implements Runnable {
 				q.get(i).setSpotInLine(q.get(i).getSpotInLine()-1);
 			}//end for
 			SuperMarket.served();
-			System.out.println(SuperMarket.getPeopleServed());
-			if(!(q.size()==0 | q.size()==1)){
-			System.out.println("\t"+q.get(q.size()-1)+" spot is: " +q.get(q.size()-1).getSpotInLine());
-        	System.out.println("\tThe shortest line is: "+ Register.getShortestLine().getLength());}
-			
+			System.out.println("Served "+ SuperMarket.getPeopleServed()+" People");
 			length--;
-			if(q.size()<shortestLine.getLength()) setShortestLine(this);
-		}
-	}
+			if(q.size()<shortestLine.getLength()) {
+				setShortestLine(this);}
+			}//Close check if not empty
+	}//Close deQ
 	
+	/**
+	 * 
+	 * @param p
+	 */
 	public void leave(Person p) {//Person leaves line
 		p.setSpotInLine(0);
 		q.remove(q.indexOf(p));
 		length--;
 		Feeder.getTheFeeder().getShoppers().add(p);
-		System.out.println(p+" actully left the Q");
 		if(q.size()<shortestLine.getLength()) {setShortestLine(this);}
-	}
+	}//Close leave
 	
+	/**
+	 * 
+	 * @return q.size()
+	 */
 	public int getLength() {//Accessory Method
 		return q.size();
 	}
 	
+	/**
+	 * 
+	 * @return name
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * 
+	 * @return r
+	 */
+	public static ArrayList<Register> getRegisters(){
+		return r;
+	}
+	
+	/**
+	 * Used when having the shortest line is imperative.
+	 */
 	public synchronized static void setShortestLine(){//sets shortest line
 		//if (q.size()<shortestLine.getLength()) {shortestLine=this;};
 		for (int i=0;i<r.size();i++){
@@ -98,6 +133,11 @@ public class Register implements Runnable {
 		}
 	}
 	
+	/**
+	 * used when a register can identify itself as the shortest line.
+	 * 
+	 * @param reg
+	 */
 	public synchronized static void setShortestLine(Register reg){
 		shortestLine=reg;
 	};
@@ -105,4 +145,4 @@ public class Register implements Runnable {
 	public String toString(){
 		return q.toString();
 	}
-}
+}//Close class

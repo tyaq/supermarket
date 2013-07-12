@@ -5,12 +5,16 @@ import java.util.ArrayList;
 public class Feeder implements Runnable {
 	private ArrayList<Person> shoppers;
 	private Person p;
+	private Register reg;
 	private boolean inital=true;
 	private static Feeder theFeeder;
 	
-	public Feeder(int numberOfShoppers){
+	public Feeder(int numberOfShoppers, int numberOfRegisters){
 		shoppers = new ArrayList<Person>(numberOfShoppers);
 		//creates the number of People class objects that user wants to create
+		for(int j = 0; j<numberOfRegisters;j++) {
+			reg = new Register();
+		}
 		for(int i = 0; i < numberOfShoppers; i++) {
 
 		     p = new Person();
@@ -19,8 +23,8 @@ public class Feeder implements Runnable {
 		}//end for
 	}//end constructor
 	
+	// Always tries to put people in lines
 	public void run(){
-		System.out.println("Feeder Thread Started");
 		while(SuperMarket.getRunning()){
 			//System.out.println((!(Feeder.getTheFeeder().getShoppers().isEmpty())));
 			//if (!(theFeeder.getShoppers().isEmpty())){
@@ -30,8 +34,10 @@ public class Feeder implements Runnable {
 	}
 	
 	
-	public void enQ(){//put people in line if this is first time make lines even
-		//put people in line based on how short it is
+	/**
+	 * put people in line based on how short it is
+	 */
+	public void enQ(){
 			while(!(shoppers.isEmpty())){
 				Register.setShortestLine();
 				Register.getShortestLine().enQ(shoppers.get(0));

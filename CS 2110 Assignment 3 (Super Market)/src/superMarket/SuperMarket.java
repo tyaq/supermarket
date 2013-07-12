@@ -1,32 +1,46 @@
 package superMarket;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class SuperMarket {
 	static boolean running =true;
 	static int peopleServed = 0;
 	public static void main(String args[]) throws Exception {
+		
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		
+		System.out.println("Please enter the number of customers needing to be served.");
+		String custString=br.readLine();
+		int cust= Integer.parseInt(custString);
+		System.out.println("Please enter the number of registers serving customers.");
+		String regString=br.readLine();
+		int reg= Integer.parseInt(regString);
+		
 		long start=System.nanoTime();
-		//Open four registers
-		Register bob = new Register();
-		Register dave = new Register();
-		Register tim = new Register();
-		//Change this arg
-		Feeder people = new Feeder(10);
-		System.out.println(people);
-		people.enQ();
-		new Thread(people).start();
-		System.out.println(Thread.activeCount());
-		System.out.println("Register bob: "+bob);
-		System.out.println("Register dave: "+dave);
-		System.out.println("Register tim: "+tim);
+		//Creates Registers and Customers
+		Feeder shop = new Feeder(cust,reg);
+		shop.enQ();
+		new Thread(shop).start();
+		for (int i=0;i<Register.getRegisters().size();i++){
+			System.out.println(Register.getRegisters().get(i).getName()+": "
+		+Register.getRegisters().get(i));
+		}
+		
+		//Pauses here until program is finished
 		while (running){
 			//Make this arg equal to the previous one
-			if(peopleServed>=10) setRunning(false);
+			if(peopleServed>=cust) setRunning(false);
 		}
+		
+		
 		long end = System.nanoTime();
-		System.out.println("It took "+ ((end-start)/1000000000)+" Seconds");
-		System.out.println("Register bob: "+bob);
-		System.out.println("Register dave: "+dave);
-		System.out.println("Register tim: "+tim);
+		System.out.println("Serving took "+ ((end-start)/1000000000)+" Seconds");
+		for (int i=0;i<Register.getRegisters().size();i++){
+			System.out.println(Register.getRegisters().get(i).getName()+": "
+		+Register.getRegisters().get(i));
+		}//Close for
 		System.out.println("Feeder: "+Feeder.getTheFeeder().getShoppers());
 		System.exit(0);
 		
